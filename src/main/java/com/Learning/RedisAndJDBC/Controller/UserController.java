@@ -1,45 +1,45 @@
 package com.Learning.RedisAndJDBC.Controller;
 
 import com.Learning.RedisAndJDBC.Entity.Employee;
-import com.Learning.RedisAndJDBC.Service.UserService;
+import com.Learning.RedisAndJDBC.Service.EmployeeService;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
 @RequestMapping("/employees")
 public class UserController {
-    private final UserService userService;
+    private final EmployeeService employeeService;
 
-    public UserController(UserService userService) {
-        this.userService = userService;
+    public UserController(EmployeeService employeeService) {
+        this.employeeService = employeeService;
     }
 
     @GetMapping("/read")
     public List<Employee> getAllEmployees() {
-        return userService.getAllEmployees();
+        return employeeService.getAllEmployees();
     }
 
     @GetMapping("/read/{id}")
     public Employee getEmployeeById(@PathVariable int id) {
-        return userService.getEmployeeById(id);
+        return employeeService.getEmployeeById(id);
     }
 
     @PostMapping("/insert")
     public String addEmployee(@RequestBody Employee employees) {
-        userService.addEmployee(employees);
+        employeeService.addEmployee(employees);
         return "User added successfully";
     }
 
     @PutMapping("/update/{id}")
     public String updateEmployee(@PathVariable int id, @RequestBody Employee employees) {
         employees.setId(id);
-        userService.updateEmployee(employees);
+        employeeService.updateEmployee(employees);
         return "User updated successfully";
     }
 
     @DeleteMapping("/delete/{id}")
     public String deleteEmployee(@PathVariable int id) {
-        userService.deleteEmployee(id);
+        employeeService.deleteEmployee(id);
         return "User deleted successfully";
     }
 }

@@ -1,6 +1,6 @@
 package com.Learning.RedisAndJDBC;
 
-import com.Learning.RedisAndJDBC.Service.UserService;
+import com.Learning.RedisAndJDBC.Service.EmployeeService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -9,10 +9,10 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @SpringBootApplication
 @EnableScheduling
 public class RedisAndJdbcApplication implements CommandLineRunner {
-	private final UserService userService; // Inject UserService
+	private final EmployeeService employeeService; // Inject UserService
 
-	public RedisAndJdbcApplication(UserService userService) {
-		this.userService = userService;
+	public RedisAndJdbcApplication(EmployeeService employeeService) {
+		this.employeeService = employeeService;
 	}
 
 	public static void main(String[] args) {
@@ -22,7 +22,7 @@ public class RedisAndJdbcApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) {
 		System.out.println("Loading data from MySQL into Redis at startup...");
-		userService.loadDataFromDatabase(); // Corrected method call
+		employeeService.loadDataFromDatabase(); // Corrected method call
 	}
 }
 
