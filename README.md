@@ -51,14 +51,35 @@ mvn clean install
 mvn spring-boot:run
 ```
 
+
 ## **🛠️ API Endpoints**
-| HTTP Method | Endpoint | Description |
-|------------|---------|-------------|
-| **GET** | `/employee/read` | Get all users from Redis |
-| **GET** | `/employee/read/{id}` | Get a single user by ID |
-| **POST** | `/employee/insert` | Add a new user |
-| **PUT** | `/employee/update/{id}` | Update user details |
-| **DELETE** | `/employee/delete/{id}` | Delete a user |
+
+### **📌 Get All Users**
+#### Endpoint: `GET /employees/read`
+Retrieves all users from Redis.
+![image](https://github.com/user-attachments/assets/2bc47773-e3e5-4f43-9367-efa1fefd03e0)
+
+### **📌 Get User by ID**
+#### Endpoint: `GET /employees/read/{id}`
+Retrieves a specific user by their ID.
+![image](https://github.com/user-attachments/assets/6d1c681f-0dab-477e-84f1-bb3ae8c72355)
+
+### **📌 Add a New User**
+#### Endpoint: `POST /employees/insert`
+Adds a new user to Redis and MySQL.
+![image](https://github.com/user-attachments/assets/2073322a-0938-4096-9c26-e297397a801e)
+
+### **📌 Update an Existing User**
+#### Endpoint: `PUT /employees/update/{id}`
+Updates an existing user's details.
+![image](https://github.com/user-attachments/assets/7a4c94b4-282e-48ee-a066-a946c47484ae)
+
+### **📌 Delete a User**
+#### Endpoint: `DELETE /employees/delete/{id}`
+Deletes a user from Redis and MySQL.
+![image](https://github.com/user-attachments/assets/59e99bc7-5145-4034-a9cf-663caa110188)
+
+
 
 ## **📌 How the System Works**
 1. **On application startup**, Redis is populated with data from MySQL.
@@ -78,4 +99,3 @@ public void updateRedisFromDatabase() {
     userService.loadDataFromDatabase();
 }
 ```
-
