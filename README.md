@@ -57,8 +57,8 @@ mvn spring-boot:run
 | **GET** | `/employee/read` | Get all users from Redis |
 | **GET** | `/employee/read/{id}` | Get a single user by ID |
 | **POST** | `/employee/insert` | Add a new user |
-| **PUT** | `/employees/update/{id}` | Update user details |
-| **DELETE** | `/employees/delete/{id}` | Delete a user |
+| **PUT** | `/employee/update/{id}` | Update user details |
+| **DELETE** | `/employee/delete/{id}` | Delete a user |
 
 ## **📌 How the System Works**
 1. **On application startup**, Redis is populated with data from MySQL.
