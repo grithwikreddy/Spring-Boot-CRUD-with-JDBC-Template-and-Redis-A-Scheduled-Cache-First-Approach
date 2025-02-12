@@ -12,7 +12,6 @@ This project implements a **CRUD (Create, Read, Update, Delete) API** using **Sp
 - **MySQL** - Persistent storage
 - **Redis** - In-memory cache for fast lookups
 - **Spring Scheduler** - Periodic database updates
-- **Docker (Optional)** - Running Redis and MySQL locally
 
 ## **🚀 Features**
 - **CRUD operations** on user data
@@ -39,13 +38,7 @@ spring.redis.host=localhost
 spring.redis.port=6379
 ```
 
-### **3️⃣ Run Redis (If Not Installed)**
-You can start Redis using Docker:
-```bash
-docker run --name redis-container -p 6379:6379 -d redis
-```
-
-### **4️⃣ Build and Run the Application**
+### ** 3️⃣ Build and Run the Application**
 ```bash
 mvn clean install
 mvn spring-boot:run
