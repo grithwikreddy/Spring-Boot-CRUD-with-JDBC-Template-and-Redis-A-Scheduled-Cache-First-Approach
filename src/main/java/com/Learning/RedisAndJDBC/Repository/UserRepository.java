@@ -15,25 +15,25 @@ public class UserRepository {
 
     public List<Employee> findAll() {
         return jdbcTemplate.query("SELECT * FROM users",
-                (rs, rowNum) -> new Employee(rs.getInt("id"), rs.getString("name"), rs.getString("email"))
+                (rs, rowNum) -> new Employee(rs.getInt("id"), rs.getString("name"), rs.getString("department"))
         );
     }
 
     public Employee findById(int id) {
         return jdbcTemplate.queryForObject("SELECT * FROM users WHERE id = ?",
                 new Object[]{id},
-                (rs, rowNum) -> new Employee(rs.getInt("id"), rs.getString("name"), rs.getString("email"))
+                (rs, rowNum) -> new Employee(rs.getInt("id"), rs.getString("name"), rs.getString("department"))
         );
     }
 
     public int save(Employee user) {
-        return jdbcTemplate.update("INSERT INTO users (name, email) VALUES (?, ?)",
-                user.getName(), user.getEmail());
+        return jdbcTemplate.update("INSERT INTO users (name, department) VALUES (?, ?)",
+                user.getName(), user.getDepartment());
     }
 
     public int update(Employee user) {
-        return jdbcTemplate.update("UPDATE users SET name = ?, email = ? WHERE id = ?",
-                user.getName(), user.getEmail(), user.getId());
+        return jdbcTemplate.update("UPDATE users SET name = ?, department = ? WHERE id = ?",
+                user.getName(), user.getDepartment(), user.getId());
     }
 
     public int delete(int id) {
