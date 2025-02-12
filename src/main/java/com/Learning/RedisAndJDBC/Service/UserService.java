@@ -17,36 +17,36 @@ public class UserService {
         this.redisTemplate = redisTemplate;
     }
 
-    public List<Employee> getAllUsers() {
-        List<Employee> users = (List<Employee>) redisTemplate.opsForValue().get(REDIS_KEY);
-        if (users == null) {
-            users = userRepository.findAll();
-            redisTemplate.opsForValue().set(REDIS_KEY, users);
+    public List<Employee> getAllEmployees() {
+        List<Employee> employees = (List<Employee>) redisTemplate.opsForValue().get(REDIS_KEY);
+        if (employees == null) {
+            employees = userRepository.findAll();
+            redisTemplate.opsForValue().set(REDIS_KEY, employees);
         }
-        return users;
+        return employees;
     }
 
-    public Employee getUserById(int id) {
+    public Employee getEmployeeById(int id) {
         return userRepository.findById(id);
     }
 
-    public void addUser(Employee user) {
-        userRepository.save(user);
+    public void addEmployee(Employee employee) {
+        userRepository.save(employee);
         redisTemplate.delete(REDIS_KEY);
     }
 
-    public void updateUser(Employee user) {
-        userRepository.update(user);
+    public void updateEmployee(Employee employees) {
+        userRepository.update(employees);
         redisTemplate.delete(REDIS_KEY);
     }
 
-    public void deleteUser(int id) {
+    public void deleteEmployee(int id) {
         userRepository.delete(id);
         redisTemplate.delete(REDIS_KEY);
     }
     public void loadDataFromDatabase() {
-        List<Employee> users = userRepository.findAll();
-        redisTemplate.opsForValue().set(REDIS_KEY, users);
+        List<Employee> employees = userRepository.findAll();
+        redisTemplate.opsForValue().set(REDIS_KEY, employees);
         System.out.println("Redis reloaded with data from MySQL!");
     }
 }

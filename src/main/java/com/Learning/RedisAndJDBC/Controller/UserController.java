@@ -15,31 +15,31 @@ public class UserController {
     }
 
     @GetMapping("/read")
-    public List<Employee> getAllUsers() {
-        return userService.getAllUsers();
+    public List<Employee> getAllEmployees() {
+        return userService.getAllEmployees();
     }
 
     @GetMapping("/read/{id}")
-    public Employee getUserById(@PathVariable int id) {
-        return userService.getUserById(id);
+    public Employee getEmployeeById(@PathVariable int id) {
+        return userService.getEmployeeById(id);
     }
 
     @PostMapping("/insert")
-    public String addUser(@RequestBody Employee user) {
-        userService.addUser(user);
+    public String addEmployee(@RequestBody Employee employees) {
+        userService.addEmployee(employees);
         return "User added successfully";
     }
 
     @PutMapping("/update/{id}")
-    public String updateUser(@PathVariable int id, @RequestBody Employee user) {
-        user.setId(id);
-        userService.updateUser(user);
+    public String updateEmployee(@PathVariable int id, @RequestBody Employee employees) {
+        employees.setId(id);
+        userService.updateEmployee(employees);
         return "User updated successfully";
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteUser(@PathVariable int id) {
-        userService.deleteUser(id);
+    public String deleteEmployee(@PathVariable int id) {
+        userService.deleteEmployee(id);
         return "User deleted successfully";
     }
 }

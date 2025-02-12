@@ -14,29 +14,29 @@ public class UserRepository {
     }
 
     public List<Employee> findAll() {
-        return jdbcTemplate.query("SELECT * FROM users",
+        return jdbcTemplate.query("SELECT * FROM employees",
                 (rs, rowNum) -> new Employee(rs.getInt("id"), rs.getString("name"), rs.getString("department"))
         );
     }
 
     public Employee findById(int id) {
-        return jdbcTemplate.queryForObject("SELECT * FROM users WHERE id = ?",
+        return jdbcTemplate.queryForObject("SELECT * FROM employees WHERE id = ?",
                 new Object[]{id},
                 (rs, rowNum) -> new Employee(rs.getInt("id"), rs.getString("name"), rs.getString("department"))
         );
     }
 
     public int save(Employee user) {
-        return jdbcTemplate.update("INSERT INTO users (name, department) VALUES (?, ?)",
+        return jdbcTemplate.update("INSERT INTO employees (name, department) VALUES (?, ?)",
                 user.getName(), user.getDepartment());
     }
 
     public int update(Employee user) {
-        return jdbcTemplate.update("UPDATE users SET name = ?, department = ? WHERE id = ?",
+        return jdbcTemplate.update("UPDATE employees SET name = ?, department = ? WHERE id = ?",
                 user.getName(), user.getDepartment(), user.getId());
     }
 
     public int delete(int id) {
-        return jdbcTemplate.update("DELETE FROM users WHERE id = ?", id);
+        return jdbcTemplate.update("DELETE FROM employees WHERE id = ?", id);
     }
 }
