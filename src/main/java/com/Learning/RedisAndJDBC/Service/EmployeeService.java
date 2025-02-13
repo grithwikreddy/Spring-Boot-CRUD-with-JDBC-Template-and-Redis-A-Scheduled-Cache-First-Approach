@@ -27,6 +27,12 @@ public class EmployeeService {
     }
 
     public Employee getEmployeeById(int id) {
+        List<Employee> employees = (List<Employee>) redisTemplate.opsForValue().get(REDIS_KEY);
+        for(Employee employee:employees){
+            if(employee.getId()==id)
+                return employee;
+        }
+        //System.out.println("out");
         return employeeRepository.findById(id);
     }
 
