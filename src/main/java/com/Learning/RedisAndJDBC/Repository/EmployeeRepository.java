@@ -15,14 +15,14 @@ public class EmployeeRepository {
 
     public List<Employee> findAll() {
         return jdbcTemplate.query("SELECT * FROM employees",
-                (rs, rowNum) -> new Employee(rs.getInt("id"), rs.getString("name"), rs.getString("department"))
+                (rs, rowNum) -> new Employee(rs.getString("id"), rs.getString("name"), rs.getString("department"))
         );
     }
 
-    public Employee findById(int id) {
+    public Employee findById(String id) {
         return jdbcTemplate.queryForObject("SELECT * FROM employees WHERE id = ?",
                 new Object[]{id},
-                (rs, rowNum) -> new Employee(rs.getInt("id"), rs.getString("name"), rs.getString("department"))
+                (rs, rowNum) -> new Employee(rs.getString("id"), rs.getString("name"), rs.getString("department"))
         );
     }
 
@@ -36,7 +36,7 @@ public class EmployeeRepository {
                 user.getName(), user.getDepartment(), user.getId());
     }
 
-    public int delete(int id) {
+    public int delete(String id) {
         return jdbcTemplate.update("DELETE FROM employees WHERE id = ?", id);
     }
 }
